@@ -83,12 +83,26 @@ $(".list-group").on("click", "span", function () {
   //swap out elements
   $(this).replaceWith(dateInput);
 
+  // enable jquery ui datepicker
+  dateInput.datepicker({
+    minDate: 0,
+  });
+
   //automatically focus on new element
   dateInput.trigger("focus");
+
+  // enable jquery ui datepicker
+  dateInput.datepicker({
+    minDate: 1,
+    onClose: function () {
+      // when calendar is closed, force a "change" event on the `dateInput`
+      $(this).trigger("change");
+    }
+  });
 });
 
 //value of due date was changed
-$(".list-group").on("blur", "input[type='text']", function () {
+$(".list-group").on("change", "input[type='text']", function () {
   //get current text
   var date = $(this).val().trim();
 
@@ -156,20 +170,19 @@ $(".card .list-group").sortable({
 });
 
 $("#trash").droppable({
-  accept:".card .list-group-item",
+  accept: ".card .list-group-item",
   tolerance: "touch",
-  drop: function(event, ui) {
+  drop: function (event, ui) {
     ui.draggable.remove();
     console.log("drop");
   },
-  over: function(event,ui) {
+  over: function (event, ui) {
     console.log("over");
   },
-  out: function(event, ui) {
+  out: function (event, ui) {
     console.log("out");
-  }
+  },
 });
-
 
 // modal was triggered
 $("#task-form-modal").on("show.bs.modal", function () {
@@ -212,6 +225,11 @@ $("#remove-tasks").on("click", function () {
     $("#list-" + key).empty();
   }
   saveTasks();
+});
+
+//jQuery UI Datepicker
+$("#modalDueDate").datepicker({
+  minDate: 0,
 });
 
 // load tasks for the first time
