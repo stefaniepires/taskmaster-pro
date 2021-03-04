@@ -17,7 +17,7 @@
 * Bootstrap 
 
 ## Website
-https://steftinsley.github.io/taskmaster-pro
+https://stefaniepires.github.io/taskmaster-pro/
 
 ![Screenshot](https://github.com/steftinsley/taskmaster-pro/blob/main/assets/1605149215993.jpg)
 
